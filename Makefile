@@ -22,7 +22,7 @@ endif
 CFLAGS += -MMD -MP 
 
 # Modules
-MODULES:= HAL drivers app startup
+MODULES:= HAL drivers app startup ztos
 
 BUILD_DIR:= build
 LINKER_SCRIPT = linker.ld
