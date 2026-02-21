@@ -1,5 +1,5 @@
 # ZTOS
-Project to learn and develop a small RTOS.
+Project to learn and develop a small RTOS along with other bare-metal contents.
 
 Currently only supports - ARM Cortex M3
 
@@ -43,7 +43,7 @@ ZTOS/
     └── src/
 ```
 
-## Roadmap
+## Roadmap for ZTOS
 
 - [ ] Initialize System Clock and MCU Configuration
 - [ ] Set up Hardware Timers for Tick Generation
@@ -63,6 +63,16 @@ ZTOS/
 - [ ] Create Debugging and Logging Utilities
 
 ---
+
+## Roadmap for HAL
+
+- [ ] Add GPIO library
+- [ ] Add Timer library
+- [ ] Update USART library
+
+## Roadmap for drivers
+
+- [ ] Add DMA support
 
 ### Build
 
