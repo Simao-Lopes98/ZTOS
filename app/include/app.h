@@ -12,6 +12,8 @@
 #define OK      0
 #define ERROR   -1
 
+#define SYSTEM_LOG(S)  printf ("System log: %s\r\n", S);
+
 /* Type Definitions */
 typedef int STATUS;
 
