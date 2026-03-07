@@ -7,6 +7,7 @@
 #include <unistd.h>  // for STDERR_FILENO
 #include "gpio.h"
 #include "uart.h"
+#include "timer.h"
 
 
 char msg[USART_RCV_BUFF_MAX_SIZE];
@@ -26,13 +27,21 @@ int main(void)
 		
 	if (usartDrvEnable (USART_DRV_1) != OK)
 		while (1){/* system halt */}
-	int size = 0;
-	while(1){
+
+	SYSTEM_LOG ("USART Drv 1 Enabled!");
+
+	(void) timerDrvInit(TIMER_DRV_2);
+	(void) timerDrvEnable (TIMER_DRV_2);
+
+	SYSTEM_LOG ("TIMER Drv 2 Enabled!");
+
+	while(1)
+	{
 		/* Blink */
-		printf ("System heartbeat\r\n");
-		GPIOC->ODR ^= 1 << 13;
-		size = usartRead(USART_DRV_1, msg, USART_RCV_BUFF_MAX_SIZE);
-		printf(" Recv msg: %s with size: %d\r\n", msg, size);
+		SYSTEM_LOG ("System heartbeat");
+
+		/* DBG */
+		printf ("TIM Counter: %lu\r\n", TIM2->CNT);
 		ms_delay(1000);
 	}
 }
