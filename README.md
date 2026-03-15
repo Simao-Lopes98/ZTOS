@@ -45,10 +45,10 @@ ZTOS/
 
 ## Roadmap for ZTOS
 
-- [ ] Initialize System Clock and MCU Configuration
-- [ ] Set up Hardware Timers for Tick Generation
+- [X] Initialize System Clock and MCU Configuration
+- [X] Set up Hardware Timers for Tick Generation
 - [ ] Implement Tick Interrupt Handler
-- [ ] Create Task Control Block (TCB) Structure
+- [X] Create Task Control Block (TCB) Structure
 - [ ] Implement Context Switching Mechanism
 - [ ] Develop Task Scheduler (Round Robin / Priority-based)
 - [ ] Add Task Creation and Deletion Functions
@@ -67,12 +67,13 @@ ZTOS/
 ## Roadmap for HAL
 
 - [ ] Add GPIO library
-- [ ] Add Timer library
+- [X] Add Timer library
 - [ ] Update USART library
 
 ## Roadmap for drivers
 
 - [ ] Add DMA support
+- [ ] Add Singly Linked List Lib
 
 ### Build
 
