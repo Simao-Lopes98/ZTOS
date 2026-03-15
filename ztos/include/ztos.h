@@ -4,14 +4,24 @@
 
 /* Includes */
 #include <stdio.h>
+#include <stdlib.h>
 #include <stm32f1xx.h>
 #include <string.h>
+
 #include "clock.h"
 #include "app.h"
+#include "timer.h"
+#include "sllinkedlist.h"
 
 /* Defines */
 
+#define TICKS_PER_SEC 100
+
 #define MAX_TASK_NAME 16
+#define DUMMY_REGISTERS_NUM 13
+
+#define IDLE_TASK_STACK_SIZE 256
+#define IDLE_TASK_NAME "idleTask"
 
 /* Type definitions */
 
@@ -27,16 +37,13 @@ typedef enum
 typedef struct
 {
     void * stackPtr;
+    void * currentStackPtr;
     uint32_t stackSize;
     char name [MAX_TASK_NAME];
     zTaskHandler entryFn;
     zTaskStatus_t status;
     uint64_t ticks;
 } zTask_t;
- 
-/* Private variables */
-
-/* Private function prototypes */
 
 /* Public functions */
 
