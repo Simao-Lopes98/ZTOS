@@ -37,7 +37,7 @@ typedef enum
 
 typedef struct
 {
-    void * stackPtr;
+    void * stackPtr;        /* Has to be 1st element for easy access on ASM */
     void * currentStackPtr;
     uint32_t stackSize;
     char name [MAX_TASK_NAME];
