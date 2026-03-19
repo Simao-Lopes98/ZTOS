@@ -11,7 +11,7 @@ OBJCOPY =  	${TRIPLE}-objcopy
 LDFLAGS := -mcpu=cortex-m3 -mfloat-abi=soft -mthumb --specs=nano.specs --specs=nosys.specs
 MAPFLAGS:= -Wl,--gc-sections,--print-gc-sections,--cref
 CFLAGS := -mcpu=cortex-m3 -mthumb -mno-thumb-interwork -mfpu=vfp -msoft-float\
- -mfix-cortex-m3-ldrd -std=gnu11 -Os -Wall -fno-tree-loop-distribute-patterns\
+ -mfix-cortex-m3-ldrd -std=gnu11 -g -O0 -Wall -fno-tree-loop-distribute-patterns\
   -fdata-sections -ffunction-sections -Werror
 
 ifeq ($(BUILD_TYPE), Debug)
