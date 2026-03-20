@@ -91,6 +91,9 @@ static void timer2Init (void)
     For this config, 16 with 512 PSC will lead to timer being triggered each 10ms
     */
     TIM2->ARR = 16;
+
+    /* Set the prio to higher than the PendSV onde */
+    NVIC_SetPriority (TIM2_IRQn, 0xF0);
     
     /* Enable IRQ */
     NVIC_EnableIRQ (TIM2_IRQn);
