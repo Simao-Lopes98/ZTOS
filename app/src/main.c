@@ -8,10 +8,10 @@
 #include "gpio.h"
 #include "uart.h"
 #include "timer.h"
-#include "sllinkedlist.h"
+#include "ztos.h"
 
-
-char msg[USART_RCV_BUFF_MAX_SIZE];
+void task1Rtn (void);
+void task2Rtn (void);
 
 int main(void)
 {
@@ -31,17 +31,53 @@ int main(void)
 
 	SYSTEM_LOG ("USART Drv 1 Enabled!");
 
-
-	while(1)
+	if (zSchedInit() != OK)
 	{
+	SYSTEM_LOG ("Error on zSchedInit");	
+	}
+
+	if (zTaskCreate ("task1", 512, task1Rtn) != OK)
+	{
+		SYSTEM_LOG ("Error on zTaskCreate - task1");	
+	}
+
+	if (zTaskCreate ("task2", 512, task2Rtn) != OK)
+	{
+		SYSTEM_LOG ("Error on zTaskCreate - task1");	
+	}
+
+	// while(1)
+	// {
 		/* Blink */
-		SYSTEM_LOG ("System heartbeat");
+		// SYSTEM_LOG ("System heartbeat");
 
 		/* DBG: Toggle LED*/
-		GPIOC->ODR ^= 1 << 13;
+		// GPIOC->ODR ^= 1 << 13;
 
-		/* DBG */
-		printf ("TIM Counter: %lu\r\n", TIM2->CNT);
-		ms_delay(1000);
+	// 	zTaskDelay (TICKS_PER_SEC);
+	// }
+}
+
+
+void task1Rtn (void)
+{
+	while (1)
+	{
+		SYSTEM_LOG ("Hello on task 1");
+		/* DBG: Toggle LED*/
+		GPIOC->ODR ^= 1 << 13;
+		zTaskDelay (TICKS_PER_SEC);
 	}
+	
+}
+
+void task2Rtn (void)
+{
+	while (1)
+	{
+		SYSTEM_LOG ("Hello on task 2");
+		/* DBG: Toggle LED*/
+		zTaskDelay (TICKS_PER_SEC * 2);
+	}
+	
 }
